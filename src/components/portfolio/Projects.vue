@@ -1,6 +1,6 @@
 <template>
   <v-container id="projects" class="py-16">
-    <h1 class="text-h3 font-weight-bold text-center mb-16">Projects</h1>
+    <h1 class="text-h4 font-weight-bold text-center mb-8">Projects</h1>
     <v-row>
       <v-col v-for="project in projects" :key="project.title" cols="12" md="6" lg="4">
         <v-card class="mx-auto" max-width="400" height="100%">

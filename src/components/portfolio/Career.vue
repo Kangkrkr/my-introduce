@@ -1,7 +1,9 @@
 <template>
   <v-container id="career" class="py-16">
-    <h1 class="text-h3 font-weight-bold text-center mb-16">Career</h1>
-    <v-timeline align="start" line-inset="8">
+    <h1 class="text-h4 font-weight-bold text-center mb-12">Career</h1>
+
+    <!-- Desktop View -->
+    <v-timeline v-if="mdAndUp" align="start" line-inset="8">
       <v-timeline-item
         v-for="(item, i) in items"
         :key="i"
@@ -29,11 +31,36 @@
         </v-card>
       </v-timeline-item>
     </v-timeline>
+
+    <!-- Mobile View -->
+    <v-carousel v-else show-arrows>
+      <v-carousel-item v-for="(item, i) in items" :key="i">
+        <v-card class="mx-auto" max-width="400" height="100%">
+            <v-card-title :class="[item.color, 'white--text', 'text-h6']">
+                {{ item.company }}
+            </v-card-title>
+            <v-card-text class="white text--primary pa-6">
+                <div class="font-weight-bold mb-2">{{ item.period }}</div>
+                <h3 class="text-h6 font-weight-bold mb-2">{{ item.title }} / {{ item.team }}</h3>
+                <v-list-item v-for="desc in item.description" :key="desc" class="pa-0">
+                    <template v-slot:prepend>
+                        <v-icon class="mr-2" color="primary">mdi-chevron-right</v-icon>
+                    </template>
+                    <p>{{ desc }}</p>
+                </v-list-item>
+            </v-card-text>
+        </v-card>
+      </v-carousel-item>
+    </v-carousel>
+
   </v-container>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useDisplay } from 'vuetify';
+
+const { mdAndUp } = useDisplay();
 
 const items = ref([
   {
