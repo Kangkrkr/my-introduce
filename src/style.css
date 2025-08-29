@@ -1,0 +1,138 @@
+/*
+  :root 가상 클래스는 문서의 루트 요소를 선택합니다. HTML에서는 <html> 요소입니다.
+  여기에 변수를 선언하면 문서 전체에서 사용할 수 있습니다. (CSS 변수)
+*/
+:root {
+  /* 전체 애플리케이션의 기본 글꼴을 설정합니다. 시스템 UI 글꼴을 우선 사용하고, 사용할 수 없는 경우 Avenir, Helvetica, Arial, sans-serif 순으로 사용합니다. */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* 줄 높이를 글꼴 크기의 1.5배로 설정합니다. */
+  line-height: 1.5;
+  /* 글꼴 두께를 400(보통)으로 설정합니다. */
+  font-weight: 400;
+
+  /* 사용자의 시스템 설정에 따라 라이트 모드와 다크 모드를 지원하도록 설정합니다. */
+  color-scheme: light dark;
+  /* 기본 글자 색상을 설정합니다. 약간 투명한 흰색입니다. */
+  color: rgba(255, 255, 255, 0.87);
+  /* 기본 배경색을 어두운 회색으로 설정합니다. */
+  background-color: #242424;
+
+  /* 브라우저가 글꼴을 합성하지 않도록 설정합니다. (예: 가짜 볼드체 또는 이탤릭체) */
+  font-synthesis: none;
+  /* 텍스트 렌더링을 가독성에 최적화하도록 브라우저에 지시합니다. */
+  text-rendering: optimizeLegibility;
+  /* 웹킷 기반 브라우저(크롬, 사파리)에서 글꼴을 부드럽게 렌더링합니다. */
+  -webkit-font-smoothing: antialiased;
+  /* 파이어폭스에서 글꼴을 부드럽게 렌더링합니다. */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* <a> 태그(링크)에 대한 스타일을 정의합니다. */
+a {
+  /* 글꼴 두께를 500으로 설정합니다. */
+  font-weight: 500;
+  /* 링크 색상을 설정합니다. */
+  color: #646cff;
+  /* 텍스트 장식(밑줄 등)을 부모 요소로부터 상속받도록 설정합니다. */
+  text-decoration: inherit;
+}
+/* <a> 태그에 마우스를 올렸을 때의 스타일을 정의합니다. */
+a:hover {
+  /* 링크 색상을 약간 더 어둡게 변경합니다. */
+  color: #535bf2;
+}
+
+/* <body> 태그에 대한 스타일을 정의합니다. */
+body {
+  /* body의 바깥쪽 여백을 모두 0으로 설정합니다. */
+  margin: 0;
+  padding: 0;
+  /* 자식 요소들을 flexbox 레이아웃으로 배치합니다. */
+  display: flex;
+  /* 자식 요소들을 수직/수평 중앙에 배치합니다. */
+  place-items: center;
+  /* 최소 너비를 320px로 설정합니다. */
+  min-width: 320px;
+  /* 최소 높이를 뷰포트 높이의 100%로 설정합니다. */
+  min-height: 100vh;
+}
+
+/* <h1> 태그에 대한 스타일을 정의합니다. */
+h1 {
+  /* 글꼴 크기를 3.2em으로 설정합니다. (em은 부모 요소의 글꼴 크기에 대한 배수) */
+  font-size: 3.2em;
+  /* 줄 높이를 1.1로 설정합니다. */
+  line-height: 1.1;
+}
+
+/* <button> 태그에 대한 스타일을 정의합니다. */
+button {
+  /* 버튼의 모서리를 둥글게 만듭니다. */
+  border-radius: 8px;
+  /* 테두리를 투명하게 설정합니다. */
+  border: 1px solid transparent;
+  /* 안쪽 여백을 설정합니다. */
+  padding: 0.6em 1.2em;
+  /* 글꼴 크기를 1em으로 설정합니다. */
+  font-size: 1em;
+  /* 글꼴 두께를 500으로 설정합니다. */
+  font-weight: 500;
+  /* 글꼴을 부모 요소로부터 상속받습니다. */
+  font-family: inherit;
+  /* 배경색을 설정합니다. */
+  background-color: #1a1a1a;
+  /* 마우스 커서를 포인터(손가락 모양)로 변경합니다. */
+  cursor: pointer;
+  /* 테두리 색상이 변경될 때 0.25초 동안 부드럽게 전환되도록 설정합니다. */
+  transition: border-color 0.25s;
+}
+/* 버튼에 마우스를 올렸을 때의 스타일을 정의합니다. */
+button:hover {
+  /* 테두리 색상을 변경합니다. */
+  border-color: #646cff;
+}
+/* 버튼에 포커스가 갔을 때의 스타일을 정의합니다. */
+button:focus,
+button:focus-visible {
+  /* 포커스 시 외곽선을 설정합니다. */
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* .card 클래스를 가진 요소에 대한 스타일을 정의합니다. */
+.card {
+  /* 안쪽 여백을 2em으로 설정합니다. */
+  padding: 2em;
+}
+
+/* id가 'app'인 요소에 대한 스타일을 정의합니다. (Vue 앱이 마운트되는 요소) */
+#app {
+  /* 최대 너비를 1280px로 설정합니다. */
+  max-width: 1280px;
+  /* 위아래 여백은 0, 좌우 여백은 자동으로 설정하여 중앙 정렬합니다. */
+  margin: 0 auto;
+  /* 안쪽 여백을 2rem으로 설정합니다. (rem은 루트 요소의 글꼴 크기에 대한 배수) */
+  padding: 2rem;
+  /* 텍스트를 중앙 정렬합니다. */
+  text-align: center;
+}
+
+/*
+  미디어 쿼리를 사용하여 사용자의 시스템이 라이트 모드를 선호할 때 적용될 스타일을 정의합니다.
+*/
+@media (prefers-color-scheme: light) {
+  /* 라이트 모드일 때 :root의 스타일을 재정의합니다. */
+  :root {
+    /* 글자 색상을 어두운 색으로 변경합니다. */
+    color: #213547;
+    /* 배경색을 흰색으로 변경합니다. */
+    background-color: #ffffff;
+  }
+  /* 라이트 모드에서 <a> 태그에 마우스를 올렸을 때의 스타일을 재정의합니다. */
+  a:hover {
+    color: #747bff;
+  }
+  /* 라이트 모드에서 버튼의 배경색을 재정의합니다. */
+  button {
+    background-color: #f9f9f9;
+  }
+}
