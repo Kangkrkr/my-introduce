@@ -39,11 +39,15 @@
   <!-- 모바일용 네비게이션 드로워 -->
   <v-navigation-drawer v-model="drawer" temporary app class="d-md-none">
     <v-list>
+
       <template v-for="menu in mainMenus" :key="menu.title">
+
         <v-list-group v-if="menu.subMenus && menu.subMenus.length > 0">
+
           <template v-slot:activator="{ props }">
             <v-list-item v-bind="props" :title="menu.title"></v-list-item>
           </template>
+
           <v-list-item
             v-for="(subMenu, i) in menu.subMenus"
             :key="i"
@@ -51,54 +55,20 @@
             :href="subMenu.link"
           ></v-list-item>
         </v-list-group>
+
         <v-list-item v-else :title="menu.title" :href="menu.link"></v-list-item>
+
       </template>
+
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import type { MainMenu, TitleMenu } from '@/types/portfolio/Header'
+import { ref } from 'vue'
+import { titleMenu, mainMenus } from '@/datas/menu'
 
-const titleMenu = ref<TitleMenu>({
-  title: 'KANGKRKR',
-  class: 'font-weight-bold'
-})
-
-const mainMenus = ref<MainMenu[]>([])
 const drawer = ref(false)
-
-onMounted(() => {
-  mainMenus.value = [
-    {
-      title: 'Introduce',
-      link: '#introduce',
-      subMenus: [
-        {
-          title: 'Who am I?',
-          link: '#introduce'
-        },
-        {
-          title: 'Contact',
-          link: '#introduce'
-        },
-      ]
-    },
-    {
-      title: 'Skills',
-      link: '#skills'
-    },
-    {
-      title: 'Projects',
-      link: '#projects'
-    },
-    {
-      title: 'Career',
-      link: '#career'
-    }
-  ]
-})
 </script>
 
 <style scoped>
