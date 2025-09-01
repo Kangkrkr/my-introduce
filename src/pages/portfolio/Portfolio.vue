@@ -1,18 +1,78 @@
 <template>
-  <div>
-    <Introduce />
+  <div class="portfolio-container">
+    <section ref="introduceSection">
+      <Introduce />
+    </section>
     <v-divider class="my-8"></v-divider>
-    <Skills />
+    <section ref="skillsSection">
+      <Skills />
+    </section>
     <v-divider class="my-8"></v-divider>
-    <Projects />
+    <section ref="projectsSection">
+      <Projects />
+    </section>
     <v-divider class="my-8"></v-divider>
-    <Career />
+    <section ref="careerSection">
+      <Career />
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import Introduce from '@/components/portfolio/Introduce.vue';
 import Skills from '@/components/portfolio/Skills.vue';
 import Projects from '@/components/portfolio/Projects.vue';
 import Career from '@/components/portfolio/Career.vue';
+
+const introduceSection = ref(null);
+const skillsSection = ref(null);
+const projectsSection = ref(null);
+const careerSection = ref(null);
+
+const sections = [
+  introduceSection,
+  skillsSection,
+  projectsSection,
+  careerSection,
+];
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target); // Animate only once
+        }
+      });
+    },
+    {
+      threshold: 0.1, // Trigger when 10% of the element is visible
+    }
+  );
+
+  sections.forEach((section) => {
+    if (section.value) {
+      observer.observe(section.value);
+    }
+  });
+});
 </script>
+
+<style scoped>
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>

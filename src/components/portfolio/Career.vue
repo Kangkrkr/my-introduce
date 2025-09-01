@@ -1,6 +1,6 @@
 <template>
   <v-container id="career" class="py-16">
-    <h1 class="text-h4 font-weight-bold text-center mb-12">Career</h1>
+    <h1 class="text-h3 font-weight-bold text-center mb-12">Career Path</h1>
 
     <!-- Desktop View -->
     <v-timeline v-if="mdAndUp" align="start" line-inset="8">
@@ -8,50 +8,47 @@
         v-for="(item, i) in items"
         :key="i"
         :dot-color="item.color"
-        :icon="item.icon"
         fill-dot
         size="large"
       >
         <template v-slot:opposite>
-          <div :class="`pt-1 headline font-weight-bold ${item.color}--text`" v-text="item.period"></div>
+          <div :class="`pt-1 headline font-weight-bold text-grey-darken-1`" v-text="item.period"></div>
         </template>
-        <v-card class="elevation-4 rounded-lg">
-          <v-card-title :class="[item.color, 'white--text', 'text-h6', 'rounded-t-lg']">
+        <v-card class="styled-card">
+          <v-card-title :class="`text-h6 font-weight-bold text-grey-darken-3`">
+            <v-icon :color="item.color" class="mr-2">{{ item.icon }}</v-icon>
             {{ item.company }}
           </v-card-title>
-          <v-card-text class="white text--primary pa-6">
-            <h3 class="text-h6 font-weight-bold mb-2">{{ item.title }} / {{ item.team }}</h3>
-            <v-list-item v-for="desc in item.description" :key="desc" class="pa-0">
-              <template v-slot:prepend>
-                <v-icon class="mr-2" color="primary">mdi-chevron-right</v-icon>
-              </template>
-              <p>{{ desc }}</p>
-            </v-list-item>
+          <v-card-text class="pa-4">
+            <h4 class="text-h6 font-weight-medium mb-3 text-grey-darken-2">{{ item.title }} / {{ item.team }}</h4>
+            <div v-for="desc in item.description" :key="desc" class="d-flex align-start mb-2 text-grey-darken-4">
+              <v-icon class="mr-2 mt-1" size="small" color="primary">mdi-chevron-right</v-icon>
+              <span>{{ desc }}</span>
+            </div>
           </v-card-text>
         </v-card>
       </v-timeline-item>
     </v-timeline>
 
     <!-- Mobile View -->
-    <v-carousel v-else show-arrows>
-      <v-carousel-item v-for="(item, i) in items" :key="i">
-        <v-card class="mx-auto" max-width="400" height="100%">
-            <v-card-title :class="[item.color, 'white--text', 'text-h6']">
+    <div v-else>
+        <v-card v-for="(item, i) in items" :key="i" class="styled-card mb-8">
+             <v-card-title :class="`text-h6 font-weight-bold text-grey-darken-3`">
+                <v-icon :color="item.color" class="mr-2">{{ item.icon }}</v-icon>
                 {{ item.company }}
             </v-card-title>
-            <v-card-text class="white text--primary pa-6">
-                <div class="font-weight-bold mb-2">{{ item.period }}</div>
-                <h3 class="text-h6 font-weight-bold mb-2">{{ item.title }} / {{ item.team }}</h3>
-                <v-list-item v-for="desc in item.description" :key="desc" class="pa-0">
-                    <template v-slot:prepend>
-                        <v-icon class="mr-2" color="primary">mdi-chevron-right</v-icon>
-                    </template>
-                    <p>{{ desc }}</p>
-                </v-list-item>
+            <v-card-subtitle class="text-grey-darken-1 font-weight-bold pt-2">
+                {{ item.period }}
+            </v-card-subtitle>
+            <v-card-text class="pa-4">
+                <h4 class="text-h6 font-weight-medium mb-3 text-grey-darken-2">{{ item.title }} / {{ item.team }}</h4>
+                <div v-for="desc in item.description" :key="desc" class="d-flex align-start mb-2 text-grey-darken-4">
+                    <v-icon class="mr-2 mt-1" size="small" color="primary">mdi-chevron-right</v-icon>
+                    <span>{{ desc }}</span>
+                </div>
             </v-card-text>
         </v-card>
-      </v-carousel-item>
-    </v-carousel>
+    </div>
 
   </v-container>
 </template>
@@ -131,3 +128,22 @@ const items = ref([
   },
 ]);
 </script>
+
+<style scoped>
+.styled-card {
+  background: #FFFFFF !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.styled-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+.v-timeline--vertical.v-timeline {
+    height: auto;
+}
+</style>
