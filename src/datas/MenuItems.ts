@@ -1,16 +1,15 @@
-import type { TitleMenu } from "@/types/portfolio/Header";
-import type { MainMenu } from "@/types/portfolio/Header";
+import type { MenuItem } from "@/types/portfolio/MenuItem";
 
-export const titleMenu : TitleMenu = {
+export const titleMenu : MenuItem = {
   title: 'KANGKRKR',
   class: 'font-weight-bold'
 }
 
-export const mainMenus : MainMenu[] = [
+export const mainMenus : MenuItem[] = [
     {
       title: 'Introduce',
       link: '#introduce',
-      subMenus: [
+      children: [
         {
           title: 'Who am I?',
           link: '#introduce'

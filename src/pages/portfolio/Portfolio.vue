@@ -43,12 +43,12 @@ onMounted(() => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // Animate only once
+          observer.unobserve(entry.target); // 한번만 애니메이션 처리
         }
       });
     },
     {
-      threshold: 0.1, // Trigger when 10% of the element is visible
+      threshold: 0.1, // 가시성 10% 일 경우
     }
   );
 

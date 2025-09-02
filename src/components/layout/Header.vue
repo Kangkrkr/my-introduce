@@ -2,14 +2,14 @@
   <v-app-bar app color="rgba(255, 255, 255, 0.8)" flat>
     <v-toolbar-title :class="titleMenu.class">{{ titleMenu.title }}</v-toolbar-title>
     <v-spacer></v-spacer>
-    <div class="d-none d-md-flex">
+    <div class="d-none d-sm-flex">
 
       <template v-for="menu in mainMenus" :key="menu.title">
 
         <!-- 서브 메뉴가 존재하는 경우만 메뉴 및 목록 형태로 노출 -->
-        <v-menu v-if="menu.subMenus && menu.subMenus.length > 0" open-on-hover>
+        <v-menu v-if="menu.children && menu.children.length > 0" open-on-hover>
           
-          <template v-slot:activator="{ props }">
+          <template #activator="{ props }">
             <v-btn v-bind="props" :href="menu.link" class="mx-1">
               {{ menu.title }}
               <v-icon right>mdi-chevron-down</v-icon>
@@ -17,11 +17,12 @@
           </template>
 
           <v-list>
-            <template v-for="subMenu in menu.subMenus" :key="subMenu.title">
-              <v-list-item :href="subMenu.link">
-                <v-list-item-title>{{ subMenu.title }}</v-list-item-title>
-              </v-list-item>
-            </template>
+            <v-list-item 
+              v-for="(child, index) in menu.children" 
+              :key="index" 
+              :href="child.link">
+              <v-list-item-title>{{ child.title }}</v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
 
@@ -42,17 +43,17 @@
 
       <template v-for="menu in mainMenus" :key="menu.title">
 
-        <v-list-group v-if="menu.subMenus && menu.subMenus.length > 0">
+        <v-list-group v-if="menu.children && menu.children.length > 0">
 
-          <template v-slot:activator="{ props }">
+          <template #activator="{ props }">
             <v-list-item v-bind="props" :title="menu.title"></v-list-item>
           </template>
 
           <v-list-item
-            v-for="(subMenu, i) in menu.subMenus"
+            v-for="(child, i) in menu.children"
             :key="i"
-            :title="subMenu.title"
-            :href="subMenu.link"
+            :title="child.title"
+            :href="child.link"
           ></v-list-item>
         </v-list-group>
 
@@ -66,7 +67,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { titleMenu, mainMenus } from '@/datas/menu'
+import { titleMenu, mainMenus } from '@/datas/MenuItems'
 
 const drawer = ref(false)
 </script>
