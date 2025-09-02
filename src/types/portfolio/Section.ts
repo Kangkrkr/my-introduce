@@ -28,7 +28,9 @@ export interface Project {
     name : string ,
     company : string ,
     content : string ,
-    skills? : Skills[]
+    skills? : Skills[],
+    github? : string,
+    link? : string
 }
 
 export interface Career {
