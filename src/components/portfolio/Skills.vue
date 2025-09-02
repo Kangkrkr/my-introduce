@@ -1,24 +1,24 @@
 <template>
   <v-container id="skills" class="py-16">
-    <h1 class="text-h3 font-weight-bold text-center mb-12">My Skills</h1>
+    <h1 class="text-h3 font-weight-bold text-center mb-12">{{ title }}</h1>
     <v-card class="styled-card pa-10">
       <v-row justify="center">
-        <v-col v-for="category in skillCategories" :key="category.name" cols="12" md="6">
+        <v-col v-for="skill in data" :key="skill.title" cols="12" md="6">
           <div class="skill-category pa-4 mb-4">
             <h3 class="text-h6 font-weight-bold mb-4 text-grey-darken-3">
-              <v-icon class="mr-2" :color="category.color">{{ category.icon }}</v-icon>
-              {{ category.name }}
+              <v-icon class="mr-2" :color="skill.color">{{ skill.icon }}</v-icon>
+              {{ skill.title }}
             </h3>
             <div class="d-flex flex-wrap">
               <v-chip
-                v-for="skill in category.skills"
-                :key="skill"
+                v-for="item in skill.skills"
+                :key="item"
                 class="ma-2"
-                :color="category.color"
+                :color="skill.color"
                 label
                 variant="elevated"
               >
-                {{ skill }}
+                {{ item }}
               </v-chip>
             </div>
           </div>
@@ -29,46 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-
-const skillCategories = ref([
-  {
-    name: 'Languages',
-    icon: 'mdi-code-braces',
-    color: 'primary',
-    skills: ['JAVA', 'JavaScript']
-  },
-  {
-    name: 'Backend',
-    icon: 'mdi-server-network',
-    color: 'teal-darken-1',
-    skills: ['Spring', 'SpringBoot', 'Spring Batch', 'JPA', 'MyBatis']
-  },
-  {
-    name: 'Frontend',
-    icon: 'mdi-vuejs',
-    color: 'green-darken-1',
-    skills: ['Vue', 'Tiles']
-  },
-  {
-    name: 'Database',
-    icon: 'mdi-database',
-    color: 'orange-darken-1',
-    skills: ['Oracle', 'MS SQL', 'MySQL']
-  },
-  {
-    name: 'DevOps & Infra',
-    icon: 'mdi-docker',
-    color: 'blue-grey-darken-1',
-    skills: ['Docker', 'Linux', 'NCP', 'Jenkins', 'Nginx', 'WebToB', 'Jeus', 'GitLab']
-  },
-  {
-    name: 'Etc.',
-    icon: 'mdi-dots-horizontal-circle-outline',
-    color: 'purple-darken-1',
-    skills: ['Git', 'DDD', 'TDD', 'AOP', 'Jennifer APM', 'Konan Search', 'Ethereum']
-  }
-]);
+import { skills } from '@/datas/Skills';
+const { title , data } = skills
 </script>
 
 <style scoped>

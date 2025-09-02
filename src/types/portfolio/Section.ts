@@ -18,8 +18,8 @@ export interface Introduce {
 
 export interface Skills {
     icon? : string ,
-    title? : string ,
-    skill : string[],
+    title : string ,
+    skills : string[],
     color? : string
 }
 

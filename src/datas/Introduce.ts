@@ -1,6 +1,6 @@
-import type { PortfolioSection } from "@/types/portfolio/Section";
+import type { IntroduceSection } from "@/types/portfolio/Section";
 
-export const introduce : PortfolioSection = {
+export const introduce : IntroduceSection = {
     title : 'Introduce' ,
     data : {
         profile : '/src/assets/profile_resized_200x200.png' ,
